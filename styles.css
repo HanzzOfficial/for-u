@@ -1,0 +1,72 @@
+:root{
+  --pink:#ff6fa3;
+  --bg:#fff7fb;
+  --card:#fff;
+  --muted:#666;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#222;background:linear-gradient(180deg,var(--bg),#fff);}
+.hero{background:linear-gradient(135deg,#ffd6e8 0%,#fff 60%);padding:48px 16px;text-align:center;}
+.hero-inner{max-width:900px;margin:0 auto}
+.animated-title{font-size:2.2rem;margin:0 0 8px;display:inline-block;position:relative}
+.animated-title::after{content:'✨';position:absolute;right:-30px;top:-6px;opacity:0;transform:translateY(-6px) scale(.6);animation:twinkle 2.6s infinite}
+.name{color:var(--pink);font-weight:700}
+.hero-actions{display:flex;gap:10px;justify-content:center;margin-top:12px}
+.btn.secondary{background:transparent;color:var(--pink);border:2px solid var(--pink)}
+
+@keyframes twinkle{0%{opacity:0;transform:translateY(-4px) scale(.6)}40%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-6px) scale(.6)}}
+.name{color:var(--pink);font-weight:700}
+.subtitle{margin:0 0 16px;color:var(--muted)}
+.btn{background:var(--pink);color:white;border:0;padding:10px 16px;border-radius:999px;font-weight:600;cursor:pointer}
+.container{max-width:1000px;margin:28px auto;padding:0 16px}
+.message-card{background:var(--card);padding:18px;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+.message-card h2{margin-top:0}
+.touching{font-size:1.05rem;line-height:1.5;color:#333}
+.cute-list{margin:12px 0 0;padding-left:1.2rem;color:var(--muted)}
+.gallery-preview{margin-top:22px}
+.hint{color:var(--muted);font-size:0.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px}
+.thumb{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;cursor:pointer;display:block;box-shadow:0 6px 14px rgba(0,0,0,0.08);transition:transform .18s}
+.thumb:hover{transform:translateY(-6px)}
+.footer{text-align:center;padding:18px;color:var(--muted)}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:60}
+.lightbox.hidden{display:none}
+.lightbox-overlay{position:absolute;inset:0;background:transparent}
+.lightbox-inner{max-width:92vw;max-height:88vh;position:relative;z-index:2}
+.lightbox img{max-width:100%;max-height:80vh;border-radius:12px;display:block;box-shadow:0 12px 40px rgba(0,0,0,0.6);transition:transform .28s ease}
+.caption{color:white;text-align:center;margin-top:8px}
+.lightbox-close{position:absolute;right:10px;top:10px;background:rgba(255,255,255,0.12);border:0;color:white;font-size:20px;padding:6px 10px;border-radius:10px;cursor:pointer}
+
+/* pulse when opening image */
+.lightbox img.pulse{
+  animation:imgPulse .42s ease-out;
+}
+@keyframes imgPulse{0%{transform:scale(.94)}60%{transform:scale(1.03)}100%{transform:scale(1)}}
+
+/* heart burst */
+.heart-burst{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:1}
+.heart-burst .h{position:absolute;font-size:18px;opacity:0;transform:translateY(0) scale(.6)}
+@keyframes heartFly{0%{opacity:1;transform:translateY(0) scale(.6)}100%{opacity:0;transform:translateY(-80px) scale(1.2)}}
+.lightbox-controls{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.ctrl{background:rgba(255,255,255,0.15);color:white;border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+@media (max-width:600px){h1{font-size:1.5rem}.grid{grid-template-columns:repeat(2,1fr)}}
+
+/* floating balloons/hearts */
+.float-wrap{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:10}
+.float{position:absolute;font-size:20px;opacity:0.95;animation:floatup linear forwards}
+@keyframes floatup{0%{transform:translateY(110vh) scale(0.8);opacity:0}10%{opacity:1}100%{transform:translateY(-20vh) scale(1.1);opacity:0}}
+
+/* small responsive tweaks */
+@media (max-width:420px){.hero{padding:28px 12px}.animated-title{font-size:1.4rem}}
+
+/* music overlay */
+.music-overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.7));z-index:120}
+.music-overlay.hidden{display:none}
+.music-play-big{background:var(--pink);color:white;border:0;padding:14px 22px;border-radius:18px;font-size:18px;cursor:pointer;box-shadow:0 12px 30px rgba(255,111,160,0.18)}
+.music-overlay .tiny{margin-top:8px;color:var(--muted);font-size:13px}
+
+/* small visual for mute state */
+.btn.active{box-shadow:0 6px 14px rgba(0,0,0,0.08);}
